@@ -1,0 +1,24 @@
+{
+  "name": "game-engine",
+  "version": "0.0.1",
+  "description": "HTML5 + JavaScript game engine",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "browserify src/game_engine.js -o build/game_engine.js -s GameEngine -t [ babelify --presets [ es2015 ] ]"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kevinbarabash/game-engine.git"
+  },
+  "author": "Kevin Barabash <kevinb@khanacademy.org>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kevinbarabash/game-engine/issues"
+  },
+  "homepage": "https://github.com/kevinbarabash/game-engine#readme",
+  "devDependencies": {
+    "babel-preset-es2015": "^6.3.13",
+    "babelify": "^7.2.0"
+  }
+}

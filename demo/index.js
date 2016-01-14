@@ -14,12 +14,20 @@ let coin, sapling, scene;
 
 let active = false;
 
-//const dirtyRect =
+const Vector = GameEngine.Vector;
+const ImageSprite = GameEngine.ImageSprite;
+const Loader = GameEngine.Loader;
+const Keyboard = GameEngine.Keyboard;
+
+let scale = 2;
 
 class Scene {
     constructor() {
-        this.sprite = new Sprite(sapling);
-        this.speed = 500;
+        this.sprite = new ImageSprite(sapling);
+        this.sprite.scale.set(scale, scale);
+        this.sprite.position.set(100, 100);
+        this.speed = 200;
+        this.direction = 1;
     }
 
     update(delta) {
@@ -33,17 +41,27 @@ class Scene {
         }
         if (Keyboard.LEFT_KEY) {
             velocity.x -= 1;
+            this.direction = 1;
+
+            this.sprite.scale.x = scale;
         }
         if (Keyboard.RIGHT_KEY) {
             velocity.x += 1;
+            this.direction = -1;
+
         }
 
-        const speed = this.speed * delta / 1000;
-        //velocity = velocity.normalize().scale(speed);
+        this.sprite.scale.x = this.direction * scale;
+        this.sprite.scale.y = scale;
 
-        //this.sprite.position = this.sprite.position.add(velocity);
+        const speed = this.speed * delta / 1000;
+
+        velocity = velocity.normalize();
+
         this.sprite.position.x += speed * velocity.x;
         this.sprite.position.y += speed * velocity.y;
+
+        //scale += 0.01;
     };
 
     render() {
@@ -55,7 +73,7 @@ class Scene {
 }
 
 
-loadResources([
+Loader.loadResources([
     "sounds/retro/jump2.mp3",
     "images/leafers-sapling.png"
 ], (count, total) => {
@@ -64,7 +82,6 @@ loadResources([
     coin = resources[0];
     sapling = resources[1];
     coin.play();
-    context.drawImage(sapling, 100, 100);
 
     scene = new Scene();
 

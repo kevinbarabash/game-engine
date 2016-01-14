@@ -3,6 +3,10 @@ class Vector {
         Object.assign(this, { x, y, z });
     }
 
+    set(x, y, z = this.z) {
+        Object.assign(this, { x, y, z });
+    }
+
     add(other) {
         return new Vector(
             this.x + other.x,
@@ -46,3 +50,5 @@ class Vector {
         return this.scale(1 / this.length());
     }
 }
+
+module.exports = Vector;

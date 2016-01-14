@@ -24,3 +24,5 @@ document.addEventListener('keyup', e => {
         Keyboard[keyNames[e.keyCode]] = false;
     }
 });
+
+module.exports = Keyboard;

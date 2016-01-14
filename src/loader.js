@@ -30,7 +30,6 @@ const loadFont = function(url) {
 
 };
 
-
 const extname = function(path) {
     const parts = path.split('.');
     if (parts.length === 0 || parts.length === 1 && path[0] === '.') {
@@ -76,3 +75,6 @@ const loadResources = function(urls, progressCallback = () => {}) {
     return Promise.all(promises);
 };
 
+module.exports = {
+    loadResources
+};
